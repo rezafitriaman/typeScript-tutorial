@@ -44,4 +44,4 @@ class Knight extends Piece {}
 class Rook extends Piece {}
 class Pawn extends Piece {}
 
-// todo implement class king at page 88
+// todo implement class King at page 88
