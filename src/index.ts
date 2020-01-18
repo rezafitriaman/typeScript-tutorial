@@ -1,47 +1,88 @@
-// TYPE PROPERTY
-type Color = 'Black' | 'White';
-type File_x = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H';
-type Rank_y = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+// basic Types
 
-// REPRESENTS A CHESS GAME
-class Game {}
+// boolean
+let isDone: boolean = false;
 
-// A SET OF COORDINATES FOR A PIECE
-class Position {
-    constructor (
-        private file: File_x,
-        private rank: Rank_y
-    ){}
-    distanceFrom(position: Position) {
-        return {
-            rank: Math.abs(position.rank - this.rank),
-            file: Math.abs(position.file.charCodeAt(0) - this.file.charCodeAt(0))
-        }
-    }
+// number
+let decimal: number = 6;
+let hex: number = 0xf00d;
+let binary: number = 0b1010;
+let octalL: number = 0o744;
+
+// string
+let color: string = "red";
+color = 'blue';
+let fullName: string = `Bob Bobbingtoin`;
+let age: number = 37;
+let sentence: string = `Hello, my name is ${ fullName}. I'll be ${ age + 1 } years old next month.`;
+
+// array
+let list: number[] = [1,2,4];
+let list2: Array<number> = [1,2,3];
+
+// tuple
+let x: [string, number];
+x = ['hello000', 10]; // oke
+//x = [10, 'hello']; // error
+console.log(x[0].substring(3)); // oke
+//console.log(x[1].substring(1)); // error
+//x[3] = "world"; //error
+//console.log(x[5].toString());
+
+// enum
+enum Color {Red, Green, Blue}
+let c: Color = Color.Blue;
+let g: Color = Color.Green;
+let k: string = Color[0];
+console.log(c);
+console.log(g);
+console.log(k);
+
+// any
+let notSure: any = 4;
+notSure = "maybe a string instead'";
+notSure = false; // or boolean
+let notSure2: any = 4;
+//notSure2.ifItExists(); // might exist at runtime
+notSure2.toFixed(); // exists but the compier doest't check
+let prettySure: Object = 4;
+// prettySure.toFixed(); // error
+let listq: any[] = [1, true, "free"];
+listq[1] = 100;
+
+// void
+function warnUser(): void {
+    console.log('this is my warning message');
 }
 
-// A CHESS PIECE
-abstract class Piece{
-    protected position: Position;
-    constructor (
-        private readonly color: Color,
-        file: File_x,
-        rank: Rank_y
-    ){
-        this.position = new Position(file, rank)
-    }
-    moveTo(position: Position) {
-        this.position = position;
-    }
-    abstract canMoveTo(position: Position): boolean
+//null and undefined
+let u:undefined = undefined;
+let n: null = null;
+
+// union type
+let union: string | number = 'union';
+union = 3;
+
+// never
+function  error(message: string): never {
+    throw new Error(message);
 }
 
-// ALL OTHERS
-class King extends Piece {}
-class Queen extends Piece {}
-class Bishop extends Piece {}
-class Knight extends Piece {}
-class Rook extends Piece {}
-class Pawn extends Piece {}
+// object = anything is that is not number, string, boolean,bigint, symbol, null or undefined
+declare function create(o: object | null): void;
+//create({prop: 0});
+//create(null);
+//create(43); // error
+//create('string'); // error
+//create(false); // error
+//create(undefined); // error
 
-// todo implement class King at page 88
+// type assertions
+let someValue: any = 'this is a string';
+let strLength: number = (<string>someValue).length;
+let someValue2: any = 'this is a string';
+let strLength2: number = (someValue as string).length;
+
+
+
+
